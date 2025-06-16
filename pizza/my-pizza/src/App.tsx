@@ -10,7 +10,7 @@ import PizzaOrders from "./Orders/Orders";
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename="/Pizza2/dist">
       <Layout>
         <Routes>
           <Route path="/" element={<PizzaList />} />
