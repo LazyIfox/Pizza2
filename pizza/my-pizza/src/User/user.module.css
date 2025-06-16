@@ -1,0 +1,83 @@
+.main {
+  background-color: #F7AD45;
+  border-radius: 15px;
+  padding: 20px;
+  width: 350px;
+  text-align: center;
+  margin: auto;
+  margin-top: 50px;
+  border: 1px solid #000000;
+}
+
+.title {
+  font-size: 45px;
+  display: block;
+ margin-bottom: 15px;
+}
+
+.input {
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.input label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.input input {
+  width: 90%;
+  padding: 13px;
+  font-size: 18px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: #FFC779;
+  display: block;
+  margin: 0 auto;
+  margin-top: 8px;
+}
+
+.input input:focus {
+  border: 2px solid #000000;
+  outline: none;
+}
+
+.text {
+  font-size: 20px;
+  padding-left: 20px;
+}
+/* 
+.span {
+
+} */
+.register_button {
+  width: 90%;
+  padding: 10px;
+  background-color: #ED8A42;
+  border-radius: 15px;
+  font-size: 26px;
+  cursor: pointer;
+  border: 1px solid #000000;
+  margin-top: 20px;
+}
+
+.login_link {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.login_link a {
+  color: #333;
+  text-decoration: none;
+}
+
+.login_link:hover {
+  text-decoration: underline;
+}
+
+.error {
+  font-size: 19px;
+  margin-top: 18px;
+}

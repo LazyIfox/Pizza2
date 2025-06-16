@@ -1,0 +1,9 @@
+myenv/
+__pycache__/
+*.pyc
+*.pyo
+*.db
+.env
+.git
+node_modules/
+build/

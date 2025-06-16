@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}Пицца №{{ pizza.id }}{% endblock %}
+
+{% block content %}
+<p class="pizza-title">{{ pizza.name }}</p>
+
+<div class="detail-container">
+    <div class="image-container">
+        {% load static %}
+        <img src="{{ pizza.image.url }}" alt="{{ pizza.name }}" class="image_detail" />
+    </div>
+    <div class="info-box">
+        <h2 class="text">Описание</h2>
+        <div class="cook-info">
+            <p class="pizza-description">{{ pizza.description }}</p>
+            <p class="pizza-price">Цена: {{ pizza.price }} руб.</p>
+            <p class="cook-name">Повар: {{pizza.cook}}</p>
+        </div>
+        <div style="display: flex; gap: 50px;">
+            <button class="button_add">Добавить в корзину</button>
+            <form method="post" action="{% url 'remove_pizza' id=pizza.id %}">
+                {% csrf_token %}
+                <button class="button_add" type="submit">Удалить</button>
+            </form> 
+        </div>
+    </div>
+</div>
+{% endblock %}

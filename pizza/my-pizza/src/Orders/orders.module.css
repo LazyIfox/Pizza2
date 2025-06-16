@@ -1,0 +1,103 @@
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.choice {
+  background-color: #ED8A42;
+  border: 1px solid #000000;
+  border-radius: 15px;
+  font-size: 20px;
+  width: 170px;
+  height: 40px;
+  text-align: center;
+  color: black;
+  box-sizing: border-box;
+  padding: 0 10px;
+  line-height: 40px;
+  outline: none;
+  transition: none;
+}
+
+.choice:focus {
+  border: 1px solid #000000;
+  outline: none;
+  box-shadow: none;
+  height: 40px;
+  padding: 0 10px;
+  line-height: 40px;
+}
+
+.choice,
+.choice input {
+  color: black
+}
+
+.choice.react-datepicker-ignore-onclickoutside {
+  background-color: #ED8A42 !important;
+  border: 1px solid #000000 !important;
+  border-radius: 15px;
+  font-size: 20px;
+  width: 170px;
+  height: 40px;
+  text-align: center;
+  color: black !important;
+  box-sizing: border-box;
+  padding: 5px 10px;
+}
+
+.choice::placeholder {
+  color: black;
+  opacity: 1;
+}
+
+.dateWrapper {
+  height: 40px;
+  width: 170px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+.table th, .table td {
+  border: 1px solid #000000;
+  padding: 8px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.table th {
+  background-color: #F7AD45;
+}
+
+.table tbody {
+    background-color: #FFC779;
+}
+
+.emptyMessage {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}

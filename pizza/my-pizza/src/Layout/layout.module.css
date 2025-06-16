@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Neucha', sans-serif;
+  color: #000000; 
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFF1D7;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background-color: #87AF17;
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.icon img {
+  width: 40px;
+  height: auto;
+  margin-left: 10px;
+}
+
+.icon {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.icon:focus,
+.icon:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.basket {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 10;
+  width: 120px;
+  background: none;
+  border: none;
+}
+
+.title {
+  font-size: 45px;
+  justify-self: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #87AF17;
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: auto;
+}
+  
+.footer_title {
+  font-size: 13px;
+  color: black;
+}
+
+.button {
+  justify-self: end;
+  display: flex;
+}
+
+.button button {
+  background-color: #ED8A42;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  border: 1px solid #000000;
+  margin-right: 10px;
+  outline: none;
+}
+
+.left_block {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  justify-content: flex-start;
+}
+
+.breadcrumbs {
+  font-size: 18px;
+  color: #000000;
+}
+
+.breadcrumbs :hover {
+  text-decoration: underline;
+}
+
+.login {
+  font-size: 25px;
+  margin-right: 20px;
+  transform: translateY(6px);
+}

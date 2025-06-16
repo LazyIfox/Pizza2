@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="rus">
+<head>
+  <meta charset="utf-8">
+  {% load static %}
+  <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="icon" type="image/png" href="http://192.168.0.170:9000/pizza/pizza/icon.png">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="site-wrapper">
+    <div class="header">
+        <div class="icon">
+            <img src="http://192.168.0.170:9000/pizza/pizza/icon.png" alt="Пицца">
+        </div>
+        <div class="head_title">
+            Пиццерия
+        </div>
+        <div class="button">
+            <button>Войти</button>
+        </div>
+    </div>
+    {% block content %}{% endblock %}
+    <div class="footer">
+        <div class="foot_title">
+            @ Сайт создан студенткой группы ИС-22 Сологубовой Владой
+        </div>
+    </div>
+</div>
+</body>
+</html>

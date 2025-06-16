@@ -1,0 +1,131 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+.form {
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.input {
+  width: 80%;
+  padding: 12px;
+  font-size: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color:#FFC779
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #FFC779;
+}
+
+.heading_location {
+  margin-bottom: 20px;
+  margin-left: 75px;
+}
+
+.heading {
+  font-size: 40px; 
+  color: black; 
+  font-weight: normal;
+}
+
+.all_pizzas{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  width: 93%;
+  margin-left: 70px;
+}
+
+.card{
+  border-radius: 20px;
+  background-color:  #F7AD45;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #000000;
+  width: 200px; 
+  height: 330px;
+  margin-bottom: 50px;
+}
+
+.picture {
+  margin-bottom: 5px;
+}
+
+.picture img {
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 360px;
+  border: 1px solid #000000;
+  margin-right: 30px;
+}
+
+.name{
+  font-size: 24px;
+  margin-bottom: 1px;
+}
+
+.descript{
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.button button {
+  background-color: #ED8A42;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 25px;
+  cursor: pointer;
+  border: 1px solid #000000;
+}
+
+.button_price{
+  display: flex;             
+  justify-content: center;   
+  align-items: center;
+  text-decoration: none;
+  background-color: #ED8A42; 
+  border-radius: 10px;
+  border: 1px solid #000000;
+  width: 200px; 
+  height: 40px; 
+  color: black;
+}
+
+.button_price:hover {
+  color: black;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover; 
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #000000;
+  width: 200px; 
+  height: 200px; 
+}

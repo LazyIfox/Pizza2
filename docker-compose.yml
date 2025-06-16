@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./pizza
+      dockerfile: Dockerfile
+    container_name: pizza-backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5455/postgres
+    volumes:
+      - ./pizza:/app
+
+  frontend:
+    build:
+      context: ./pizza/my-pizza
+      dockerfile: Dockerfile
+    container_name: pizza-frontend
+    ports:
+      - "3000:5173"
+
+  db:
+    image: postgres:15
+    container_name: pizza-db
+    restart: always
+    environment:
+      POSTGRES_DB: pizza
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    ports:
+      - "5432:5455"

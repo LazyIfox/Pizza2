@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+    {% csrf_token %}
+    {% load static %}
+    <div class="space">
+    <form class="search-container" action="" method="get">
+        <input name="text" class="search-input" placeholder="Поиск" type="text" value="{{ request.GET.text }}"><br><br>
+    </form>
+    <div class="titl">
+        <h2 class="titlee">Пицца</h2>
+    </div>
+    <div class="container">
+        {% for pizza in pizzas %}
+        <div class="card">
+            <div class="info">
+                <div class="image-container">
+                    <img src="{{ pizza.image.url }}" alt="{{ pizza.name }}" class="image" />
+                </div>
+                <div class="info">
+                    <p class="title">{{ pizza.name }}</p>
+                    <p class="short-description">{{ pizza.description }}</p>
+                </div>
+            </div>
+            <div class="button">
+                <a href="{% url 'pizza_detail' pizza.id %}" class="card-button">От {{ pizza.price }} руб.</a>
+            </div>
+        </div>
+        {% endfor %}
+        Корзина: {{ items_in_cart }}
+    </div>
+
+{% endblock %}
