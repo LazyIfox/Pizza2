@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import styles from './pizza.module.css';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../store/types';
@@ -14,89 +13,82 @@ interface Pizza {
   image: string;
 }
 
-interface ApiResponse {
-  pizzas: Pizza[];
-  draft_order_id: number;
-}
+// Мок-данные
+const mockPizzas: Pizza[] = [
+  {
+    id: 1,
+    name: 'Маргарита',
+    price: 300,
+    description: 'Классическая пицца с томатным соусом, моцареллой и базиликом.',
+    cook: 'Cook A',
+    image: 'https://example.com/margherita.jpg', // Ссылка на изображение
+  },
+  {
+    id: 2,
+    name: 'Пепперони',
+    price: 400,
+    description: 'Пицца с пикантной колбасой пепперони и моцареллой.',
+    cook: 'Cook B',
+    image: 'https://example.com/pepperoni.jpg', // Ссылка на изображение
+  },
+  {
+    id: 3,
+    name: 'Гавайская',
+    price: 450,
+    description: 'Пицца с ананасами, ветчиной и моцареллой.',
+    cook: 'Cook C',
+    image: 'https://example.com/hawaiian.jpg', // Ссылка на изображение
+  },
+  // Добавьте другие мок-данные по необходимости
+];
 
 const Pizza: React.FC = () => {
-  const [pizzas, setPizzas] = useState<Pizza[]>([]);
-  const [filteredPizzas, setFilteredPizzas] = useState<Pizza[]>([]);
+  const [filteredPizzas, setFilteredPizzas] = useState<Pizza[]>(mockPizzas); // Мок-данные всегда
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<string>('');
   const [vegetarianFilter, setVegetarianFilter] = useState<string>('');
   const navigate = useNavigate();
   const isCook = useSelector((state: RootState) => state.user.is_cook);
 
-  useEffect(() => {
-    const fetchPizzas = async () => {
-      try {
-        const response = await axios.get<ApiResponse>('http://localhost:8000/api/pizzas/', { withCredentials: true });
-        setPizzas(response.data.pizzas); 
-        setFilteredPizzas(response.data.pizzas);
-      } catch (error) {
-        console.error('Error fetching pizzas:', error);
-      }
-    };
-    fetchPizzas();
-  }, [isCook]);
-  
-  const handleSearch = async (query: string) => {
-    try {
-      const response = await axios.get<ApiResponse>(`http://localhost:8000/api/pizzas/?search=${query}`,{ withCredentials: true });
-      setFilteredPizzas(response.data.pizzas);
-    } catch (error) {
-      console.error('Error searching pizzas:', error);
-    }
+  // Фильтрация пицц
+  const handleSearch = (query: string) => {
+    const filtered = mockPizzas.filter((pizza) =>
+      pizza.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredPizzas(filtered);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setSearchQuery(query);
-    if (query) {
-      handleSearch(query);
-    } else {
-      setFilteredPizzas(pizzas);
-    }
+    handleSearch(query);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery) {
-      handleSearch(searchQuery);
-    } else {
-      setFilteredPizzas(pizzas);
-    }
-  };
-
-  const handleSortChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const sort = e.target.value;
     setSortOrder(sort);
-    try {
-      const queryParams = new URLSearchParams();
-      if (vegetarianFilter) queryParams.append('is_vegetarian', vegetarianFilter);
-      if (sort) queryParams.append('ordering', sort);
-      const url = `http://localhost:8000/api/pizzas/?${queryParams.toString()}`;
-      const response = await axios.get<ApiResponse>(url);
-      setFilteredPizzas(response.data.pizzas);
-    } catch (error) {
-      console.error('Error fetching pizzas:', error);
+    const sortedPizzas = [...filteredPizzas];
+    if (sort === 'price') {
+      sortedPizzas.sort((a, b) => a.price - b.price);
+    } else if (sort === '-price') {
+      sortedPizzas.sort((a, b) => b.price - a.price);
     }
+    setFilteredPizzas(sortedPizzas);
   };
 
-  const handleVegetarianFilterChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleVegetarianFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const veg = e.target.value;
     setVegetarianFilter(veg);
-    try {
-      const queryParams = new URLSearchParams();
-      if (veg) queryParams.append('is_vegetarian', veg);
-      if (sortOrder) queryParams.append('ordering', sortOrder);
-      const url = `http://localhost:8000/api/pizzas/?${queryParams.toString()}`;
-      const response = await axios.get<ApiResponse>(url);
-      setFilteredPizzas(response.data.pizzas);
-    } catch (error) {
-      console.error('Error filtering pizzas:', error);
-    }
+    // Примерная фильтрация для вегетарианских пицц
+    const filtered = mockPizzas.filter((pizza) => {
+      if (veg === '') return true; // Показывать все
+      // Пример: вегетарианские пиццы, если это вегетарианская пицца
+      if (veg === 'true' && pizza.description.includes('вегетариан')) {
+        return true;
+      }
+      return false;
+    });
+    setFilteredPizzas(filtered);
   };
 
   const handlePizzaClick = (pizzaId: number) => {
@@ -105,9 +97,15 @@ const Pizza: React.FC = () => {
 
   return (
     <div className={styles.main}>
-      <form className={styles.form} action="" method="get" onSubmit={handleSubmit}>
-        <input name="text" className={styles.input} placeholder="Поиск" type="text"
-                value={searchQuery} onChange={handleInputChange}/>
+      <form className={styles.form} action="" method="get">
+        <input
+          name="text"
+          className={styles.input}
+          placeholder="Поиск"
+          type="text"
+          value={searchQuery}
+          onChange={handleInputChange}
+        />
         {!isCook && (
           <div className={styles.filters}>
             <select value={sortOrder} onChange={handleSortChange} className={styles.select}>
@@ -124,10 +122,12 @@ const Pizza: React.FC = () => {
         )}
       </form>
       <div className={styles.heading_location}>
-        <h2 className={styles.heading}>{isCook ? 'Информация о пиццах, которые находятся под вашей ответственностью' : 'Пицца'}</h2>
+        <h2 className={styles.heading}>
+          {isCook ? 'Информация о пиццах, которые находятся под вашей ответственностью' : 'Пицца'}
+        </h2>
       </div>
       <div className={styles.all_pizzas}>
-        {filteredPizzas && filteredPizzas.length > 0 ? (
+        {filteredPizzas.length > 0 ? (
           filteredPizzas.map((pizza) => (
             <div className={styles.card} key={pizza.id}>
               <div className={styles.info}>
@@ -145,11 +145,11 @@ const Pizza: React.FC = () => {
                 </button>
               </div>
             </div>
-            ))
-          ) : (
-            <p>Нет подходящих пицц под данные фильтры</p>
-          )}
-        </div>
+          ))
+        ) : (
+          <p>Нет подходящих пицц под данные фильтры</p>
+        )}
+      </div>
     </div>
   );
 };
