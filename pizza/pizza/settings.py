@@ -120,7 +120,7 @@ WSGI_APPLICATION = 'pizza.wsgi.application'
 AWS_ACCESS_KEY_ID = 'minioadmin'
 AWS_SECRET_ACCESS_KEY = 'minioadmin'
 AWS_STORAGE_BUCKET_NAME = 'pizza'
-AWS_S3_ENDPOINT_URL = 'http://127.0.0.1:9000'   #изменено, 'http://192.168.0.171:9000' 'http://127.0.0.1:9000' 
+AWS_S3_ENDPOINT_URL = 'http://192.168.0.170:9000'   #изменено, 'http://192.168.0.171:9000' 'http://127.0.0.1:9000' 
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_QUERYSTRING_AUTH = False
 
@@ -136,7 +136,7 @@ DATABASES = {
         'NAME': 'pizza',
         'USER': 'postgres',
         'PASSWORD': '123',
-        'HOST':  '127.0.0.1',   #изменено,'192.168.0.171',  '127.0.0.1', 
+        'HOST':  '192.168.0.170',   #изменено,'192.168.0.171',  '127.0.0.1', 
         'PORT': 5455,
     }
 }
@@ -147,7 +147,7 @@ SESSION_CACHE_ALIAS = 'default'
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'LOCATION': 'redis://192.168.0.170:6379/1',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
@@ -155,7 +155,7 @@ CACHES = {
 }
 
 
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = '192.168.0.171'
 REDIS_PORT = 6379
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

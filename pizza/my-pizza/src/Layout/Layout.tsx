@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styles from './layout.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../store/actions';
@@ -24,6 +24,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const handleClick2 = (to: string) => {
     navigate(to);
   };
+
+  const pathnames = location.pathname.split('/').filter((x) => x);
 
   useEffect(() => {
     const currentPath = location.pathname;
@@ -78,7 +80,7 @@ const handleLogout = async () => {
       <div className={styles.header}>
         <div className={styles.left_block}>
           <button className={styles.icon} onClick={handleClick}>
-            <img src="http://127.0.0.1:9000/pizza/pizza/icon.png" alt="Пицца" />
+            <img src="http://192.168.0.170:9000/pizza/pizza/icon.png" alt="Пицца" />
           </button>
           <nav className={styles.breadcrumbs}>
             {breadcrumbs.map((path, index) => {
@@ -123,7 +125,7 @@ const handleLogout = async () => {
       {userLogin && (
         <>
           <button onClick={() => handleClick2('/basket')} className={styles.basket}>
-            <img src="http://127.0.0.1:9000/pizza/pizza/basket4.svg" alt="Корзина" className={styles.icon} />
+            <img src="http://192.168.0.170:9000/pizza/pizza/basket4.svg" alt="Корзина" className={styles.icon} />
           </button>
         </>
       )}

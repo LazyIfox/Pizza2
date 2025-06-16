@@ -108,12 +108,10 @@ def TypesPizzas(request):
     if query:
         pizzas = pizzas.filter(name__icontains=query)
 
-    products_in_draft_order = 0
-    if request.user.is_authenticated:
-        products_in_draft_order = ProductInOrder.objects.filter(
-            order__client=request.user,
-            order__status=Order_pizza.OrderStatus.DRAFT
-        ).count()
+    products_in_draft_order = ProductInOrder.objects.filter(
+        order__client=request.user,
+        order__status=Order_pizza.OrderStatus.DRAFT
+    ).count()
 
     return render(request, 'pizza.html', {
         'pizzas': pizzas,
