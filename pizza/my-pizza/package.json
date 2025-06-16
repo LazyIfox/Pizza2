@@ -11,7 +11,7 @@
     "serve": "vite preview",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://LazyIfox.github.io/Pizza2",
+  "homepage": "https://LazyIfox.github.io/Pizza2/dist",
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.9.0",
