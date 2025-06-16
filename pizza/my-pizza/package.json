@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "serve": "vite preview",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "homepage": "https://LazyIfox.github.io/Pizza2/dist",
